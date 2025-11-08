@@ -57,6 +57,115 @@ section h3 {
   color: #1a237e;
 }
 
+/* Basic card layout */
+.activity-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+  border: 1px solid #e6e7ee;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 4px 12px rgba(34, 40, 60, 0.06);
+  max-width: 720px;
+}
+
+/* Header */
+.activity-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.activity-title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #0f1724;
+}
+.activity-badge {
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* Description & meta */
+.activity-description {
+  color: #334155;
+  margin: 8px 0 12px 0;
+}
+.activity-meta {
+  display: flex;
+  gap: 16px;
+  color: #475569;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+/* Participants section */
+.participants-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #f1f5f9;
+}
+.participants-section h5 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #0f1724;
+}
+
+/* Bulleted list with subtle avatars-like bullets */
+.participants-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  display: block;
+}
+.participants-list li {
+  padding: 6px 0;
+  color: #102a43;
+  font-size: 0.92rem;
+  border-bottom: 1px solid rgba(16, 42, 67, 0.04);
+}
+.participants-list li:last-child {
+  border-bottom: none;
+}
+.participants-list .no-participants {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Footer / actions */
+.activity-card-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+.join-btn {
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.join-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Loading placeholder */
+#activities-list .loading {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .activity-card { padding: 12px; }
+  .activity-meta { flex-direction: column; gap: 6px; }
+}
+
 .activity-card {
   margin-bottom: 15px;
   padding: 15px;

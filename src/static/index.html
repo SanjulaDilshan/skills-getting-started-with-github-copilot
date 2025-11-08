@@ -16,9 +16,38 @@
       <section id="activities-container">
         <h3>Available Activities</h3>
         <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+          <!-- Rendered activity cards will be inserted here by app.js -->
+          <div class="loading">Loading activities…</div>
         </div>
+
+        <!-- Template: activity card with participants section -->
+        <template id="activity-card-template">
+          <article class="activity-card" role="article">
+            <header class="activity-card-header">
+              <h4 class="activity-title">Activity Title</h4>
+              <span class="activity-badge">Grade 9–12</span>
+            </header>
+
+            <p class="activity-description">Short description of the activity goes here.</p>
+
+            <div class="activity-meta">
+              <span class="slots">Slots: <strong class="slots-count">20</strong></span>
+              <span class="participants-meta">Participants: <strong class="participants-count">0</strong></span>
+            </div>
+
+            <section class="participants-section" aria-labelledby="participants-heading">
+              <h5 id="participants-heading">Participants</h5>
+              <ul class="participants-list">
+                <!-- JS should populate <li> elements here. Show friendly placeholder when empty. -->
+                <li class="no-participants">No participants yet</li>
+              </ul>
+            </section>
+
+            <footer class="activity-card-footer">
+              <button class="join-btn" type="button">Sign Up</button>
+            </footer>
+          </article>
+        </template>
       </section>
 
       <section id="signup-container">
