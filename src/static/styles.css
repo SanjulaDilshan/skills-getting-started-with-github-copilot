@@ -257,3 +257,12 @@ footer {
   padding: 20px;
   color: #666;
 }
+
+ul {
+    list-style-type: none; /* Hide bullet points */
+}
+
+.delete-icon {
+    cursor: pointer; /* Change cursor to pointer for delete icon */
+    margin-left: 10px; /* Space between participant name and icon */
+}

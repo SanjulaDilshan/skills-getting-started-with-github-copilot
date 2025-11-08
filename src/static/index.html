@@ -68,6 +68,21 @@
         </form>
         <div id="message" class="hidden"></div>
       </section>
+
+      <section id="participants-container">
+        <h3>Participants List</h3>
+        <ul id="participants-list">
+          <li>
+            Participant 1 <img src="delete-icon.png" alt="Delete" class="delete-icon" onclick="unregisterParticipant('Participant 1')" />
+          </li>
+          <li>
+            Participant 2 <img src="delete-icon.png" alt="Delete" class="delete-icon" onclick="unregisterParticipant('Participant 2')" />
+          </li>
+          <li>
+            Participant 3 <img src="delete-icon.png" alt="Delete" class="delete-icon" onclick="unregisterParticipant('Participant 3')" />
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer>
@@ -75,5 +90,11 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+      function unregisterParticipant(participant) {
+        // Logic to unregister the participant
+        console.log(participant + ' unregistered');
+      }
+    </script>
   </body>
 </html>

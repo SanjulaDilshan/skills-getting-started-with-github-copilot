@@ -5,14 +5,39 @@ A super simple FastAPI application that allows students to view and sign up
 for extracurricular activities at Mergington High School.
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 import os
 from pathlib import Path
+import json
 
 app = FastAPI(title="Mergington High School API",
               description="API for viewing and signing up for extracurricular activities")
+
+# WebSocket connection manager
+class ConnectionManager:
+    def __init__(self):
+        self.active_connections: list[WebSocket] = []
+
+    async def connect(self, websocket: WebSocket):
+        await websocket.accept()
+        self.active_connections.append(websocket)
+
+    def disconnect(self, websocket: WebSocket):
+        self.active_connections.remove(websocket)
+
+    async def broadcast_activities(self):
+        if self.active_connections:
+            message = json.dumps({"type": "activities_update", "data": activities})
+            for connection in self.active_connections:
+                try:
+                    await connection.send_text(message)
+                except:
+                    # If sending fails, we'll handle it in the connection handler
+                    pass
+
+manager = ConnectionManager()
 
 # Mount the static files directory
 current_dir = Path(__file__).parent
@@ -92,9 +117,7 @@ def get_activities():
 
 
 @app.post("/activities/{activity_name}/signup")
-# Validate student is not already signed up
-@app.post("/activities/{activity_name}/signup")
-def signup_for_activity(activity_name: str, email: str):
+async def signup_for_activity(activity_name: str, email: str):
    """Sign up a student for an activity"""
    # Validate activity exists
    if activity_name not in activities:
@@ -109,4 +132,18 @@ def signup_for_activity(activity_name: str, email: str):
 
    # Add student
    activity["participants"].append(email)
+   # Broadcast the updated activities to all connected clients
+   await manager.broadcast_activities()
    return {"message": f"Signed up {email} for {activity_name}"}
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            # Wait for any message (we don't use the content)
+            await websocket.receive_text()
+            # Send current activities
+            await websocket.send_text(json.dumps({"type": "activities_update", "data": activities}))
+    except:
+        manager.disconnect(websocket)
