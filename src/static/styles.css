@@ -6,13 +6,11 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f1724;
+  background: #f8fafc;
+  margin: 0;
+  padding: 24px;
 }
 
 header {
@@ -55,6 +53,123 @@ section h3 {
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   color: #1a237e;
+}
+
+/* Activities list container */
+#activities-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 900px;
+  margin-top: 12px;
+}
+
+/* Activity card */
+.activity-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+  border: 1px solid #e6e7ee;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+}
+
+/* Card header */
+.activity-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.activity-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0b1220;
+}
+.activity-badge {
+  font-size: 0.8rem;
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* Description / meta */
+.activity-description {
+  margin: 8px 0 12px 0;
+  color: #334155;
+}
+.activity-meta {
+  display: flex;
+  gap: 16px;
+  color: #475569;
+  font-size: 0.9rem;
+  align-items: center;
+}
+
+/* Participants section */
+.participants-section {
+  margin-top: 8px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #f1f5f9;
+}
+.participants-section h5 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #0f1724;
+}
+
+/* Bulleted list styling */
+.participants-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+.participants-list li {
+  padding: 6px 0;
+  color: #102a43;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(16, 42, 67, 0.04);
+}
+.participants-list li:last-child { border-bottom: none; }
+.participants-list .no-participants {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Footer actions */
+.activity-card-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+.join-btn {
+  background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.join-btn:hover { transform: translateY(-1px); }
+
+/* Loading text */
+#activities-list .loading {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  #activities-list { gap: 10px; }
+  .activity-card { padding: 12px; }
+  .activity-meta { flex-direction: column; gap: 6px; align-items: flex-start; }
 }
 
 .activity-card {
@@ -141,4 +256,13 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+}
+
+ul {
+    list-style-type: none; /* Hide bullet points */
+}
+
+.delete-icon {
+    cursor: pointer; /* Change cursor to pointer for delete icon */
+    margin-left: 10px; /* Space between participant name and icon */
 }
